@@ -153,17 +153,23 @@ function Execution() {
 
     const Notes = document.createElement("div");
 
-    const taskNotes = document.createElement("div");
-    const descNotes = document.createElement("div");
-    const dateNotes = document.createElement("div");
+    const taskNotes = document.createElement("h4");
+    const descNotes = document.createElement("p");
+    const dateNotes = document.createElement("h4");
+    const closeButton = document.createElement("button");
+    let notesElements = [taskNotes, descNotes, dateNotes];
 
     //!CLASS
-    taskNotes.classList = "taskNotes";
+    taskNotes.className = "taskNotes";
+    descNotes.className = "descNotes";
+    dateNotes.className = "dateNotes";
+    closeButton.className = "closeButton";
 
     //*Text Content
     taskNotes.textContent = tasks;
     descNotes.textContent = desc;
     dateNotes.textContent = date;
+    closeButton.textContent = "DELETE";
 
     //?Append
     Notes.className = "Notes";
@@ -175,6 +181,7 @@ function Execution() {
 
     emergentWindow.style.display = "none";
 
+    //^Radio Buttons
     if (priorityInputHigh.checked) {
       taskNotes.style.color = "red";
     } else if (priorityInputMedium.checked) {
@@ -182,6 +189,51 @@ function Execution() {
     } else if (priorityInputLow.checked) {
       taskNotes.style.color = "green";
     }
+
+    //!MODIFY NOTES CODE
+    for (let i = 0; i < notesElements.length; i++) {
+      notesElements[i].addEventListener("dblclick", function () {
+        const modifyInput = document.createElement("input");
+
+        const modifyInputDate = document.createElement("input");
+        modifyInputDate.setAttribute("type", "date");
+
+        const modifyButton = document.createElement("button");
+        modifyButton.className = "modifyButton";
+
+        if (i < 2) {
+          Notes.appendChild(modifyInput);
+        } else {
+          Notes.appendChild(modifyInputDate);
+        }
+        Notes.append(modifyButton);
+
+        modifyButton.textContent = "MODIFY";
+
+        modifyButton.addEventListener("click", function () {
+          if (i < 2) {
+            notesElements[i].textContent = modifyInput.value;
+            Notes.removeChild(modifyInput);
+            Notes.removeChild(modifyButton);
+          } else {
+            notesElements[i].textContent = modifyInputDate.value;
+            Notes.removeChild(modifyInputDate);
+            Notes.removeChild(modifyButton);
+          }
+        });
+      });
+    }
+
+    // //~Delete elements
+    Notes.addEventListener("mouseenter", function () {
+      Notes.appendChild(closeButton);
+    });
+    Notes.addEventListener("mouseleave", function () {
+      Notes.removeChild(closeButton);
+    });
+    closeButton.addEventListener("click", function () {
+      Notes.remove();
+    });
   });
 
   return leftBar;

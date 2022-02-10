@@ -105,16 +105,15 @@
 
 .Notes {
   background: linear-gradient(#020024, #a12f74);
-  width: 15%;
-  height: 570px;
-  text-align: center;
   box-shadow: inset 0 -3em 3em #020024, 10px 5px 5px #290424;
+  text-align: center;
   width: 18.25%;
   height: 200px;
-  text-align: center;
   border: 4px solid black;
   margin: 20px;
   border-radius: 20px;
+  font-family: monospace;
+  overflow-wrap: break-word;
 }
 
 /*^POR LAS DUDAS ACA ESTOY APLICANDOO EL FLEX*/
@@ -150,6 +149,32 @@ label {
 .task {
   margin-top: 10px;
   font-size: 20px;
+}
+
+.taskNotes {
+  font-size: 25px;
+  margin: 10px;
+}
+
+.descNotes {
+  font-size: 15px;
+  margin: 10px;
+}
+
+.dateNotes {
+  font-size: 20px;
+  margin: 10px;
+  margin-bottom: 5px;
+}
+
+.closeButton,
+.modifyButton {
+  width: 100px;
+  height: 50px;
+  border-radius: 10px;
+  background: linear-gradient(#020024, #a12f74);
+  color: white;
+  font-family: monospace;
 }
 
 @media (max-width: 800px) {
